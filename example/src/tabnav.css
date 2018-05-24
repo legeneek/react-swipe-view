@@ -1,0 +1,11 @@
+.navs {
+  display: flex;
+  height: 40px;
+  line-height: 40px;
+}
+.tab-nav {
+  flex-grow: 1;
+}
+.tab-nav.active {
+  color: red;
+}
