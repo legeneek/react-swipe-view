@@ -14,7 +14,7 @@ import SwipeView from 'react-swipe-view'
     {views}
 </SwipeView>
 ```
-check the demo code at `exapmle` folder and effect [here](https://legeneek.github.io/react-swipe-view/index.html)
+check the demo code at `example` folder and effect [here](https://legeneek.github.io/react-swipe-view/index.html)
 
 ### Prop Types
 | Property | Type | Required? | Description |
