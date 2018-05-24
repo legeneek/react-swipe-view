@@ -1,7 +1,7 @@
 {
   "name": "react-swipe-view",
   "version": "1.0.0",
-  "description": "react component for ",
+  "description": "react component for mobile, switch tab views by gesture",
   "main": "dist/index.js",
   "scripts": {
     "start": "webpack-dev-server --mode development",
