@@ -11,6 +11,7 @@ module.exports = {
     path: path.join(__dirname, "example/dist"),
     filename: "bundle.js"
   },
+  mode: process.env.WEBPACK_SERVE ? 'development' : 'production',
   module: {
     rules: [
       {
@@ -28,7 +29,7 @@ module.exports = {
   resolve: {
     extensions: [".js", ".jsx"]
   },
-  devServer: {
+  serve: {
     port: 3000
   }
 };

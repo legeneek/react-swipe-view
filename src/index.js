@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 
-const fastSwipeTime = 300
 let startX, startY, moveDelta, moveStartT
 
 class SwipeView extends Component {
@@ -10,8 +9,6 @@ class SwipeView extends Component {
     this.handleTouchStart = this.handleTouchStart.bind(this)
     this.handleTouchMove = this.handleTouchMove.bind(this)
     this.handleTouchEnd = this.handleTouchEnd.bind(this)
-    this.onSwipe = this.props.onSwipe || function(){}
-    this.tabChange = this.props.tabChange || function(){}
     this.isSwipe = 0
   }
   componentDidMount () {
@@ -39,7 +36,7 @@ class SwipeView extends Component {
     this.containerRef.current.style.transition = ''
     if (this.isSwipe === 0) {
       this.isSwipe = Math.abs(deltaX) > Math.abs(deltaY) ? 1 : -1
-      this.onSwipe(this.isSwipe === 1)
+      this.props.onSwipe(this.isSwipe === 1)
     }
 
     if (this.isSwipe === 1) {
@@ -53,14 +50,14 @@ class SwipeView extends Component {
     const gapT = Date.now() - moveStartT
     let cur = this.props.cur
     if (this.isSwipe === 1) {
-      if (gapT < fastSwipeTime || Math.abs(moveDelta) >= this.props.tabWidth / 2) {
+      if (gapT < this.props.fastSwipeTime || Math.abs(moveDelta) >= this.props.tabWidth / 2) {
         cur = moveDelta > 0 ? Math.max(this.props.cur - 1, 0) : Math.min(this.props.cur  + 1, this.props.num - 1)
-        this.tabChange(cur)
+        this.props.tabChange(cur)
       }
       this.animateView(cur)
     }
     this.isSwipe = 0
-    this.onSwipe(false)
+    this.props.onSwipe(false)
   }
   animateView (cur) {
     this.containerRef.current.style.transition = 'all 0.3s linear'
@@ -84,6 +81,12 @@ class SwipeView extends Component {
       </div>
     )
   }
+}
+
+SwipeView.defaultProps = {
+  fastSwipeTime: 300,
+  tabChange: function() {},
+  onSwipe: function() {}
 }
 
 export default SwipeView

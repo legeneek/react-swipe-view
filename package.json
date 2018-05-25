@@ -1,13 +1,13 @@
 {
   "name": "react-swipe-view",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "react component for mobile, switch tab views by gesture",
   "main": "dist/index.js",
   "scripts": {
-    "start": "webpack-dev-server --mode development",
+    "start": "webpack-serve",
     "build": "webpack --mode production",
     "transpile": "babel src -d dist --copy-files",
-    "prepublish": "npm run transpile"
+    "prepublishOnly": "npm run transpile"
   },
   "repository": {
     "type": "git",
@@ -36,7 +36,7 @@
     "style-loader": "^0.21.0",
     "webpack": "^4.8.3",
     "webpack-cli": "^2.1.4",
-    "webpack-dev-server": "^3.1.4"
+    "webpack-serve": "^1.0.2"
   },
   "peerDependencies": {
     "react": "^16.4.0",
