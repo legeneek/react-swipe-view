@@ -25,3 +25,4 @@ check the demo code at `example` folder and effect [here](https://legeneek.githu
 | fastSwipeTime | Number |  | swipe time less then `fastSwipeTime`(default 300ms) will cause tab view change |
 | tabChange | Function |  | callback invoked when tab view changed by user's gesture `(index: Number): void` |
 | onSwipe | Function |  | callback invoked when user is sliding `(isSwipe: Boolean):void`, if user is sliding horizontally `isSwipe` is true else false |
+| containerStyle | Object |  | this component use `display: flex` to layout inner tab views, set `containerStyle` to change it |

@@ -64,10 +64,10 @@ class SwipeView extends Component {
     this.containerRef.current.style.transform = `translate3d(${-1 * cur * this.props.tabWidth}px, 0, 0)`
   }
   render () {
-    const containerStyle = {
+    const containerStyle = Object.assign({
       width: `${this.props.num * this.props.tabWidth}px`,
       display: 'flex'
-    }
+    }, this.props.containerStyle)
     const tabViewStyle = {
       width: '100%',
       overflowX: 'hidden'
@@ -85,6 +85,7 @@ class SwipeView extends Component {
 
 SwipeView.defaultProps = {
   fastSwipeTime: 300,
+  containerStyle: {},
   tabChange: function() {},
   onSwipe: function() {}
 }

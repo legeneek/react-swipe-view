@@ -46,7 +46,7 @@ class App extends Component {
     return (
       <div className="App">
         <TabNav tabs={this.tabs} cur={this.state.curTab} tabChange={this.tabChange}/>
-        <SwipeView cur={this.state.curTab} num={this.tabs.length} tabWidth={tabWidth} tabChange={this.tabChange}>
+        <SwipeView containerStyle={{backgroundColor: 'red'}} cur={this.state.curTab} num={this.tabs.length} tabWidth={tabWidth} tabChange={this.tabChange}>
           {views}
         </SwipeView>
       </div>
