@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
-
-let startX, startY, moveDelta, moveStartT
+import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 
 class SwipeView extends Component {
   constructor (props) {
@@ -10,6 +9,10 @@ class SwipeView extends Component {
     this.handleTouchMove = this.handleTouchMove.bind(this)
     this.handleTouchEnd = this.handleTouchEnd.bind(this)
     this.isSwipe = 0
+    this.startX = 0
+    this.startY = 0
+    this.moveDelta = 0
+    this.moveStartT = 0
   }
   componentDidMount () {
     this.containerRef.current.style.transform = `translate3d(${-1 * this.props.cur * this.props.tabWidth}px, 0, 0)`
@@ -21,17 +24,17 @@ class SwipeView extends Component {
     this.containerRef.current.style.transition = ''
     if (e.touches.length === 1) {
       const touch = e.touches[0]
-      moveStartT = Date.now()
-      startX = touch.pageX
-      startY = touch.pageY
-      moveDelta = 0
+      this.moveStartT = Date.now()
+      this.startX = touch.pageX
+      this.startY = touch.pageY
+      this.moveDelta = 0
     }
   }
   handleTouchMove (e) {
     const touch = e.touches[0]
-    const deltaX = touch.pageX - startX
-    const deltaY = touch.pageY - startY
-    moveDelta = deltaX
+    const deltaX = touch.pageX - this.startX
+    const deltaY = touch.pageY - this.startY
+    this.moveDelta = deltaX
 
     this.containerRef.current.style.transition = ''
     if (this.isSwipe === 0) {
@@ -47,11 +50,11 @@ class SwipeView extends Component {
     }
   }
   handleTouchEnd () {
-    const gapT = Date.now() - moveStartT
+    const gapT = Date.now() - this.moveStartT
     let cur = this.props.cur
     if (this.isSwipe === 1) {
-      if (gapT < this.props.fastSwipeTime || Math.abs(moveDelta) >= this.props.tabWidth / 2) {
-        cur = moveDelta > 0 ? Math.max(this.props.cur - 1, 0) : Math.min(this.props.cur  + 1, this.props.num - 1)
+      if (gapT < this.props.fastSwipeTime || Math.abs(this.moveDelta) >= this.props.tabWidth / 2) {
+        cur = this.moveDelta > 0 ? Math.max(this.props.cur - 1, 0) : Math.min(this.props.cur  + 1, this.props.num - 1)
         this.props.tabChange(cur)
       }
       this.animateView(cur)
@@ -83,7 +86,18 @@ class SwipeView extends Component {
   }
 }
 
+SwipeView.propTypes = {
+  num: PropTypes.number.isRequired,
+  tabWidth: PropTypes.number.isRequired,
+  cur: PropTypes.number,
+  fastSwipeTime: PropTypes.number,
+  tabChange: PropTypes.func,
+  onSwipe: PropTypes.func,
+  containerStyle: PropTypes.object,
+}
+
 SwipeView.defaultProps = {
+  cur: 0,
   fastSwipeTime: 300,
   containerStyle: {},
   tabChange: function() {},

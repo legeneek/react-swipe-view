@@ -19,9 +19,9 @@ check the demo code at `example` folder and effect [here](https://legeneek.githu
 ### Prop Types
 | Property | Type | Required? | Description |
 |:---|:---|:---:|:---|
-| cur | Number | ✓ | current tab index start from 0 |
 | num | Number | ✓ | total number of tab view |
 | tabWidth | Number | ✓ | width of each tab view |
+| cur | Number |   | current tab index start from 0, default 0 |
 | fastSwipeTime | Number |  | swipe time less then `fastSwipeTime`(default 300ms) will cause tab view change |
 | tabChange | Function |  | callback invoked when tab view changed by user's gesture `(index: Number): void` |
 | onSwipe | Function |  | callback invoked when user is sliding `(isSwipe: Boolean):void`, if user is sliding horizontally `isSwipe` is true else false |
