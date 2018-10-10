@@ -63,7 +63,7 @@ class SwipeView extends Component {
     this.props.onSwipe(false)
   }
   animateView (cur) {
-    this.containerRef.current.style.transition = 'all 0.3s linear'
+    this.containerRef.current.style.transition = `all ${this.props.animation.duration || 0.3}s ${this.props.animation.timing || 'linear'} ${this.props.animation.delay || 0}s`
     this.containerRef.current.style.transform = `translate3d(${-1 * cur * this.props.tabWidth}px, 0, 0)`
   }
   render () {
@@ -94,6 +94,11 @@ SwipeView.propTypes = {
   tabChange: PropTypes.func,
   onSwipe: PropTypes.func,
   containerStyle: PropTypes.object,
+  animation: PropTypes.shape({
+    duration: PropTypes.number,
+    timing: PropTypes.string,
+    delay: PropTypes.number
+  })
 }
 
 SwipeView.defaultProps = {
@@ -101,7 +106,12 @@ SwipeView.defaultProps = {
   fastSwipeTime: 300,
   containerStyle: {},
   tabChange: function() {},
-  onSwipe: function() {}
+  onSwipe: function() {},
+  animation: {
+    duration: 0.3,
+    timing: 'linear',
+    delay: 0
+  }
 }
 
 export default SwipeView
