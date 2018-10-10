@@ -10,7 +10,7 @@ npm i react-swipe-view
 ```jsx
 import SwipeView from 'react-swipe-view'
 
-<SwipeView cur={curTab} num={tabs.length} tabWidth={tabWidth} tabChange={tabChange} onSwipe={onSwipe}>
+<SwipeView cur={0} num={5} tabWidth={375} tabChange={tabChange} onSwipe={onSwipe} animation={{duration:0.3, timing: 'ease', delay: 0}}>
     {views}
 </SwipeView>
 ```
@@ -26,3 +26,4 @@ check the demo code at `example` folder and effect [here](https://legeneek.githu
 | tabChange | Function |  | callback invoked when tab view changed by user's gesture `(index: Number): void` |
 | onSwipe | Function |  | callback invoked when user is sliding `(isSwipe: Boolean):void`, if user is sliding horizontally `isSwipe` is true else false |
 | containerStyle | Object |  | this component use `display: flex` to layout inner tab views, set `containerStyle` to change it |
+| animation | Object |  | define the animation props for tab transition. eg:`{duration: 0.3, timing: 'ease', delay: 0}`
