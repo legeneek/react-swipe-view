@@ -7,3 +7,7 @@ html,body {
 .app {
   height: 100%;
 }
+.test {
+  height: 100px;
+  background: burlywood;
+}

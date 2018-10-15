@@ -11,6 +11,7 @@ module.exports = {
     path: path.join(__dirname, "example/dist"),
     filename: "bundle.js"
   },
+  devtool: 'source-map',
   mode: process.env.WEBPACK_SERVE ? 'development' : 'production',
   module: {
     rules: [

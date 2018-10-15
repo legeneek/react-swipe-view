@@ -39,14 +39,17 @@ class App extends Component {
     const views = this.tabs.map(function(tab, i) {
       const text = `view-${i+1}`
       return (
-        <div style={viewStyle} key={i}>{text}</div>
+        <div style={viewStyle} key={i}>
+        <div className="test">touch disabled</div>
+        {text}
+        </div>
       )
     })
 
     return (
       <div className="App">
         <TabNav tabs={this.tabs} cur={this.state.curTab} tabChange={this.tabChange}/>
-        <SwipeView containerStyle={{backgroundColor: 'red'}} cur={this.state.curTab} num={this.tabs.length} tabWidth={tabWidth} tabChange={this.tabChange} animation={{duration: 0.5}}>
+        <SwipeView containerStyle={{backgroundColor: 'red'}} cur={this.state.curTab} num={this.tabs.length} tabWidth={tabWidth} tabChange={this.tabChange} animation={{timing:'ease'}} disableTouch={['.test']}>
           {views}
         </SwipeView>
       </div>

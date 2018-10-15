@@ -13,14 +13,20 @@ class SwipeView extends Component {
     this.startY = 0
     this.moveDelta = 0
     this.moveStartT = 0
+    this.disableNodeList = null
   }
   componentDidMount () {
     this.containerRef.current.style.transform = `translate3d(${-1 * this.props.cur * this.props.tabWidth}px, 0, 0)`
+    if(this.props.disableTouch) {
+      this.disableNodeList = this.containerRef.current.querySelectorAll(this.props.disableTouch.join(','))
+    }
   }
   componentDidUpdate () {
     this.animateView(this.props.cur)
   }
   handleTouchStart (e) {
+    if(this.isDisableTouch(e.target)) return
+
     this.containerRef.current.style.transition = ''
     if (e.touches.length === 1) {
       const touch = e.touches[0]
@@ -31,6 +37,8 @@ class SwipeView extends Component {
     }
   }
   handleTouchMove (e) {
+    if(this.isDisableTouch(e.target)) return
+
     const touch = e.touches[0]
     const deltaX = touch.pageX - this.startX
     const deltaY = touch.pageY - this.startY
@@ -49,7 +57,9 @@ class SwipeView extends Component {
       this.containerRef.current.style.transform = `translate3d(${-1 * this.props.cur * this.props.tabWidth + deltaX}px, 0, 0)`
     }
   }
-  handleTouchEnd () {
+  handleTouchEnd (e) {
+    if(this.isDisableTouch(e.target)) return
+
     const gapT = Date.now() - this.moveStartT
     let cur = this.props.cur
     if (this.isSwipe === 1) {
@@ -84,6 +94,13 @@ class SwipeView extends Component {
       </div>
     )
   }
+  isDisableTouch (target) {
+    if (!this.disableNodeList) {
+      return false
+    }
+    
+    return Array.prototype.indexOf.call(this.disableNodeList, target) !== -1
+  }
 }
 
 SwipeView.propTypes = {
@@ -98,7 +115,8 @@ SwipeView.propTypes = {
     duration: PropTypes.number,
     timing: PropTypes.string,
     delay: PropTypes.number
-  })
+  }),
+  disableTouch: PropTypes.arrayOf(PropTypes.string)
 }
 
 SwipeView.defaultProps = {
@@ -111,7 +129,8 @@ SwipeView.defaultProps = {
     duration: 0.3,
     timing: 'linear',
     delay: 0
-  }
+  },
+  disableTouch: []
 }
 
 export default SwipeView

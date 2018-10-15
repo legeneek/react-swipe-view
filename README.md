@@ -10,7 +10,7 @@ npm i react-swipe-view
 ```jsx
 import SwipeView from 'react-swipe-view'
 
-<SwipeView cur={0} num={5} tabWidth={375} tabChange={tabChange} onSwipe={onSwipe} animation={{duration:0.3, timing: 'ease', delay: 0}}>
+<SwipeView cur={0} num={5} tabWidth={375} tabChange={tabChange} onSwipe={onSwipe} animation={{duration:0.3, timing: 'ease', delay: 0}} disableTouch={['.disabled']}>
     {views}
 </SwipeView>
 ```
@@ -27,3 +27,4 @@ check the demo code at `example` folder and effect [here](https://legeneek.githu
 | onSwipe | Function |  | callback invoked when user is sliding `(isSwipe: Boolean):void`, if user is sliding horizontally `isSwipe` is true else false |
 | containerStyle | Object |  | this component use `display: flex` to layout inner tab views, set `containerStyle` to change it |
 | animation | Object |  | define the animation props for tab transition. eg:`{duration: 0.3, timing: 'ease', delay: 0}`
+| disableTouch | Array |  | an array of `dom selectors`, indicate the dom not trigger touch effect. eg: `['.disabled', '.no-touch']`. selector should not use `,`
