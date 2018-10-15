@@ -17,14 +17,14 @@ class SwipeView extends Component {
   }
   componentDidMount () {
     this.containerRef.current.style.transform = `translate3d(${-1 * this.props.cur * this.props.tabWidth}px, 0, 0)`
-    if(this.props.disableTouch) {
-      this.disableNodeList = this.containerRef.current.querySelectorAll(this.props.disableTouch.join(','))
-    }
   }
   componentDidUpdate () {
     this.animateView(this.props.cur)
   }
   handleTouchStart (e) {
+    if(this.props.disableTouch) {
+      this.disableNodeList = this.containerRef.current.querySelectorAll(this.props.disableTouch.join(','))
+    }
     if(this.isDisableTouch(e.target)) return
 
     this.containerRef.current.style.transition = ''
