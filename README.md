@@ -20,7 +20,7 @@ check the demo code at `example` folder and effect [here](https://legeneek.githu
 | Property | Type | Required? | Description |
 |:---|:---|:---:|:---|
 | num | Number | ✓ | total number of tab view |
-| tabWidth | Number | ✓ | width of each tab view |
+| tabWidth | Number | ✓ | width of each tab view(px). this is the width of tab container, you need to set the width of view yourself |
 | cur | Number |   | current tab index start from 0, default 0 |
 | fastSwipeTime | Number |  | swipe time less then `fastSwipeTime`(default 300ms) will cause tab view change |
 | tabChange | Function |  | callback invoked when tab view changed by user's gesture `(index: Number): void` |
